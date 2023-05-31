@@ -21,10 +21,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUsersTable() throws SQLException {
+        userDaoJDBCImpl.createUsersTable();
     }
 
     @Override
     public void dropUsersTable() throws SQLException {
+        userDaoJDBCImpl.dropUsersTable();
     }
 
     @Override
