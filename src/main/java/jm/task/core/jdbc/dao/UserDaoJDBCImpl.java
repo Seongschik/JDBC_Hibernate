@@ -8,9 +8,7 @@ import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
     private Connection connection;
-    public UserDaoJDBCImpl() throws SQLException{
-        connection = Util.getConnection();
-    }
+
     @Override
     public void createUsersTable() throws SQLException{
         String query = "CREATE TABLE IF NOT EXISTS users ("
@@ -60,7 +58,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 String name = resultSet.getString("name");
                 String lastName = resultSet.getString("lastName");
                 byte age = resultSet.getByte("age");
-                userList.add(new User(id, name, lastName, age));
+/*                userList.add(new User(id, name, lastName, age));*/
             }
         }
         return userList;
