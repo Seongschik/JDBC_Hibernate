@@ -1,8 +1,6 @@
 package jm.task.core.jdbc.model;
-
 import javax.persistence.*;
-
-import static javax.persistence.GenerationType.IDENTITY;
+import java.util.Objects;
 
 @Table(name = "users")
 @Entity
@@ -21,14 +19,16 @@ public class User {
     @Column(name = "age")
     private Byte age;
 
-    public User() {
-
+    public User(long id, String name, String lastName, byte age) {
     }
 
     public User(String name, String lastName, Byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User() {
     }
 
     public Long getId() {
@@ -61,5 +61,18 @@ public class User {
 
     public void setAge(Byte age) {
         this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, age);
     }
 }

@@ -11,6 +11,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Environment;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -25,6 +28,13 @@ import org.hibernate.service.ServiceRegistry;
 import java.util.Properties;
 
 public class Util {
+    private static final String URL = "jdbc:mysql://localhost:3306/mydbtest";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "KaskadeR5";
+    public static Connection connection() throws SQLException {
+        return DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    }
+
 
 
     private static SessionFactory sessionFactory;

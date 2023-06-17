@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import jm.task.core.jdbc.util.Util;
 import javax.persistence.PersistenceException;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -23,14 +24,14 @@ public class UserDaoHibernateImpl implements UserDao {
     public void createUsersTable() {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
-            String sql =
+            String query =
                     "CREATE TABLE IF NOT EXISTS mydbtest.`users`" +
                             "(`id` INT NOT NULL AUTO_INCREMENT," +
                             "`name` VARCHAR(50)," +
                             "`lastName` VARCHAR(50)," +
                             "`age` INTEGER," +
                             "PRIMARY KEY (`id`))";
-            session.createNativeQuery(sql).executeUpdate();
+            session.createNativeQuery(query).executeUpdate();
             session.getTransaction().commit();
         }
     }
@@ -46,7 +47,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public void saveUser(String name, String lastName, byte age) {
+    public void saveUser(String name, String lastName, byte age) throws SQLException {
         try (Session session = factory.openSession()) {
             User user = new User(name, lastName, age);
             session.beginTransaction();

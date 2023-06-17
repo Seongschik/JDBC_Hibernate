@@ -21,10 +21,11 @@ import javax.persistence.metamodel.EntityType;
 import java.util.Set;
 
 import static jm.task.core.jdbc.util.Util.*;
+import org.junit.Assert;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        UserDaoHibernateImpl connection = new UserDaoHibernateImpl();
+/*        UserDaoHibernateImpl connection = new UserDaoHibernateImpl();
 
         connection.createUsersTable();
         connection.saveUser("Phrodo", "Kan", (byte) 27);
@@ -33,8 +34,53 @@ public class Main {
         connection.saveUser("Seongschik", "Jeon", (byte) 30);
         connection.getAllUsers();
         System.out.println(connection.getAllUsers().toString());
-/*        connection.cleanUsersTable();
+        connection.cleanUsersTable();
         connection.dropUsersTable();*/
+
+
+
+        Util.connection();
+        UserDao userDao = new UserDaoJDBCImpl();
+        final String testName = "Ivan";
+        final String testLastName = "Ivanov";
+        final byte testAge = 5;
+
+
+        try{
+        userDao.dropUsersTable();
+        userDao.createUsersTable();
+        userDao.saveUser(testName, testLastName, testAge);
+
+        User user = userDao.getAllUsers().get(0);
+
+        if (!testName.equals(user.getName())
+                || !testLastName.equals(user.getLastName())
+                || testAge != user.getAge()
+        ) {
+            Assert.fail("User был некорректно добавлен в базу данных");
+        }
+
+    } catch (Exception e) {
+        Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
+    }
+
+
+//        userDao.createUsersTable();
+//
+//        userDao.saveUser("Kan", "Phrodo", (byte) 20);
+//        userDao.saveUser("Kim", "Kimnick", (byte) 25);
+//        userDao.saveUser("Se", "Seka", (byte) 31);
+//        userDao.saveUser("Jeon", "Seongschik", (byte) 38);
+//
+//        userDao.removeUserById(1);
+//        userDao.getAllUsers();
+//        userDao.cleanUsersTable();
+//        userDao.dropUsersTable();
+
+
+
+
+
 
     }
 }
