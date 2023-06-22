@@ -13,12 +13,8 @@ public class UserServiceImpl implements UserService{
     private UserDao userDao;
 
     {
-        try {
-            userDao = new UserDaoJDBCImpl() {
-            };
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        userDao = new UserDaoHibernateImpl() {
+        };
     }
 
 

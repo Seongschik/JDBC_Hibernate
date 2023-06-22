@@ -39,30 +39,30 @@ public class Main {
 
 
 
-        Util.connection();
-        UserDao userDao = new UserDaoJDBCImpl();
-        final String testName = "Ivan";
-        final String testLastName = "Ivanov";
-        final byte testAge = 5;
-
-
-        try{
-        userDao.dropUsersTable();
-        userDao.createUsersTable();
-        userDao.saveUser(testName, testLastName, testAge);
-
-        User user = userDao.getAllUsers().get(0);
-
-        if (!testName.equals(user.getName())
-                || !testLastName.equals(user.getLastName())
-                || testAge != user.getAge()
-        ) {
-            Assert.fail("User был некорректно добавлен в базу данных");
-        }
-
-    } catch (Exception e) {
-        Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
-    }
+//        Util.connection();
+//        UserDao userDao = new UserDaoJDBCImpl();
+//        final String testName = "Ivan";
+//        final String testLastName = "Ivanov";
+//        final byte testAge = 5;
+//
+//
+//        try{
+//        userDao.dropUsersTable();
+//        userDao.createUsersTable();
+//        userDao.saveUser(testName, testLastName, testAge);
+//
+//        User user = userDao.getAllUsers().get(0);
+//
+//        if (!testName.equals(user.getName())
+//                || !testLastName.equals(user.getLastName())
+//                || testAge != user.getAge()
+//        ) {
+//            Assert.fail("User был некорректно добавлен в базу данных");
+//        }
+//
+//    } catch (Exception e) {
+//        Assert.fail("Во время тестирования сохранения пользователя произошло исключение\n" + e);
+//    }
 
 
 //        userDao.createUsersTable();

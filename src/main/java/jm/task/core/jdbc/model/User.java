@@ -20,6 +20,10 @@ public class User {
     private Byte age;
 
     public User(long id, String name, String lastName, byte age) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
     }
 
     public User(String name, String lastName, Byte age) {
