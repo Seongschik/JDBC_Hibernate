@@ -35,6 +35,9 @@ public class Util {
         return DriverManager.getConnection(URL, USERNAME, PASSWORD);
     }
 
+    private Util() {
+        // Приватный конструктор, нужен чтобы предотвратить создание экземпляров класса
+    }
 
 
     private static SessionFactory sessionFactory;
